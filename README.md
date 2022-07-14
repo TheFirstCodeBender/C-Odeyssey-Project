@@ -1,2 +1,2 @@
-# Ninja-Heros
+# Ninja-Heroes
 A JavaScript Fighting Game.
