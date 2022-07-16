@@ -8,26 +8,59 @@ cContext.fillRect(0, 0, canvas.width, canvas.height);
 
 const gravity = 0.7
 class Sprite {
-    constructor({position, velocity}) {
+    constructor({position, velocity, color = 'red', offset}) {
         this.position = position
         this.velocity = velocity
         this.height = 150
+        this.width = 50
         this.lastKey
+        this.attackBox = {
+            position: {
+                x: this.position.x,
+                y: this.position.y
+            },
+
+            //offset argument for hitbox
+            offset,
+            width: 100,
+            height: 50 
+        }
+        this.color = color
+        this.isAttacking = false
     }
+
+
     //Draws initial character sprite
-    draw(color) {
-        cContext.fillStyle = color
-        cContext.fillRect(this.position.x, this.position.y, 50, this.height)
+    draw() {
+        cContext.fillStyle = this.color
+        cContext.fillRect(this.position.x, this.position.y, this.width, this.height)
+
+        // attack box
+        if (this.isAttacking) {
+        cContext.fillStyle = 'green'
+        cContext.fillRect(this.attackBox.position.x, this.attackBox.position.y+ 20, this.attackBox.width, this.attackBox.height)
+        }
+        
     }
+
+
     //Update location of Sprites
-    update(color) {
-        this.draw(color)
+    update() {
+        this.draw()
+        this.attackBox.position.x = this.position.x + this.attackBox.offset.x
+        this.attackBox.position.y = this.position.y
         this.position.x += this.velocity.x
         this.position.y += this.velocity.y
         if (this.position.y + this.height + this.velocity.y >= canvas.height) {
             this.velocity.y = 0
         } else this.velocity.y += gravity
-        
+    }
+
+    attack() {
+        this.isAttacking = true
+        setTimeout(() => {
+            this.isAttacking = false
+        }, 100)
     }
 }
 
@@ -40,6 +73,10 @@ const player1 = new Sprite({
     velocity: {
         x: 0,
         y: 0,
+    },
+    offset: {
+        x: 0,
+        y: 0
     }
 })
 
@@ -53,7 +90,13 @@ const player2 = new Sprite({
     velocity: {
         x: 0,
         y: 0,
+    },
+    color: 'blue',
+    offset: {
+        x: -50,
+        y: 0
     }
+
 })
 
 
@@ -78,6 +121,21 @@ const keys = {
     }
 }
 
+function rectangularCollision({
+    rectangle1,
+    rectangle2
+}) {
+    return (
+        rectangle1.attackBox.position.x + rectangle1.attackBox.width >=rectangle2.position.x
+        &&
+        rectangle1.attackBox.position.x <= rectangle2.position.x + rectangle2.width
+        &&
+        rectangle1.attackBox.position.y +rectangle2.attackBox.height >=rectangle2.position.y
+        &&
+        rectangle1.attackBox.position.y <= rectangle2.position.y + rectangle2.height
+        )
+}
+
 
 function animate() {
     window.requestAnimationFrame(animate)
@@ -90,15 +148,38 @@ function animate() {
     player1.velocity.x = 0
     player2.velocity.x = 0
 
+    //Player 1 Movement
     if (keys.a.pressed && player1.lastKey === 'a' ) {
         player1.velocity.x = -5;
     } else if (keys.d.pressed && player1.lastKey === 'd') {
         player1.velocity.x = 5;
     }
+
+    //Player 2 Movement
     if (keys.ArrowLeft.pressed && player2.lastKey === 'ArrowLeft' ) {
         player2.velocity.x = -5;
     } else if (keys.ArrowRight.pressed && player2.lastKey === 'ArrowRight') {
         player2.velocity.x = 5;
+    }
+
+    // detect for collision
+    if (
+        rectangularCollision({
+            rectangle1: player1,
+            rectangle2: player2
+    }) && player1.isAttacking
+    ) {
+        player1.isAttacking = false
+        console.log('Player1 hit Success')
+    }
+    if (
+        rectangularCollision({
+            rectangle1: player2,
+            rectangle2: player1
+    }) && player2.isAttacking
+    ) {
+        player2.isAttacking = false
+        console.log('Player2 hit Success')
     }
 }
 
@@ -122,6 +203,10 @@ window.addEventListener('keydown', (event) => {
         player1.velocity.y = -20
         break
         
+        case ' ':
+        player1.attack()
+        break
+        
         //Player 2 keys
         case 'ArrowRight':
         keys.ArrowRight.pressed = true
@@ -135,6 +220,10 @@ window.addEventListener('keydown', (event) => {
 
         case 'ArrowUp':
         player2.velocity.y = -20
+        break
+        
+        case 'ArrowDown':
+        player2.attack()
         break
     }
 })
