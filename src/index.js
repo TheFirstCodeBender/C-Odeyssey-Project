@@ -27,6 +27,7 @@ class Sprite {
         }
         this.color = color
         this.isAttacking = false
+        this.health = 100
     }
 
 
@@ -170,7 +171,8 @@ function animate() {
     }) && player1.isAttacking
     ) {
         player1.isAttacking = false
-        console.log('Player1 hit Success')
+        player2.health -= 10
+        document.querySelector('#Player2Health').style.width = player2.health + '%'
     }
     if (
         rectangularCollision({
@@ -179,7 +181,8 @@ function animate() {
     }) && player2.isAttacking
     ) {
         player2.isAttacking = false
-        console.log('Player2 hit Success')
+        player1.health -= 10
+        document.querySelector('#Player1Health').style.width = player1.health + '%'
     }
 }
 
