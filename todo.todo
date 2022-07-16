@@ -4,6 +4,19 @@ Basic Fighting Game Mechanics:
  ✔ Move Characters with Event Listeners @done(22-07-14 15:14)
  ✔ Attacks @done(22-07-15 20:16)
  ✔ Health Bar Interface @done(22-07-16 17:14)
- ☐ Game Timers and Game Over
- ☐ Sprites and Animations
- ☐ Develop Learning AI or Advanced Computer AI?
+ ✔ Game Timers and Game Over @done(22-07-16 18:47)
+
+
+Sprites and Animation:
+ ☐ Background Sprites
+ ☐ Shop Sprite With Animation
+ ☐ Player 1 Sprite
+ ☐ Player 2 Sprite
+ ☐ Interface Design and Animation
+ ☐ Push Live
+
+UI & UX:
+ ☐ Game Menu
+ ☐ Character Select
+ ☐ Game Modes
+ ☐ Computer AI
