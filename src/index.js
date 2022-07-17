@@ -15,6 +15,15 @@ const background = new Sprite({
     },
     imageSrc: '../assets/Stages/Hidden-Forest/background.png'
 })
+const shop = new Sprite({
+    position: {
+        x: 625,
+        y: 128
+    },
+    imageSrc: '../assets/Stages/Hidden-Forest/shop.png',
+    scale: 2.75,
+    framesMax: 6
+})
 
 const player1 = new Fighter({
     // initial position of player1
@@ -82,6 +91,7 @@ function animate() {
     cContext.fillStyle = 'black'
     cContext.fillRect(0, 0, canvas.width, canvas.height)
     background.update()
+    shop.update()
     player1.update('red')
     player2.update('blue')
 
