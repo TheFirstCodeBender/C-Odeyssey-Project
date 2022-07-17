@@ -7,65 +7,16 @@ canvas.height = 576;
 cContext.fillRect(0, 0, canvas.width, canvas.height);
 
 const gravity = 0.7
-class Sprite {
-    constructor({position, velocity, color = 'red', offset}) {
-        this.position = position
-        this.velocity = velocity
-        this.height = 150
-        this.width = 50
-        this.lastKey
-        this.attackBox = {
-            position: {
-                x: this.position.x,
-                y: this.position.y
-            },
 
-            //offset argument for hitbox
-            offset,
-            width: 100,
-            height: 50 
-        }
-        this.color = color
-        this.isAttacking = false
-        this.health = 100
-    }
+const background = new Sprite({
+    position: {
+        x: 0,
+        y: 0
+    },
+    imageSrc: '../assets/Stages/Hidden-Forest/background.png'
+})
 
-
-    //Draws initial character sprite
-    draw() {
-        cContext.fillStyle = this.color
-        cContext.fillRect(this.position.x, this.position.y, this.width, this.height)
-
-        // attack box
-        if (this.isAttacking) {
-        cContext.fillStyle = 'green'
-        cContext.fillRect(this.attackBox.position.x, this.attackBox.position.y+ 20, this.attackBox.width, this.attackBox.height)
-        }
-        
-    }
-
-
-    //Update location of Sprites
-    update() {
-        this.draw()
-        this.attackBox.position.x = this.position.x + this.attackBox.offset.x
-        this.attackBox.position.y = this.position.y
-        this.position.x += this.velocity.x
-        this.position.y += this.velocity.y
-        if (this.position.y + this.height + this.velocity.y >= canvas.height) {
-            this.velocity.y = 0
-        } else this.velocity.y += gravity
-    }
-
-    attack() {
-        this.isAttacking = true
-        setTimeout(() => {
-            this.isAttacking = false
-        }, 100)
-    }
-}
-
-const player1 = new Sprite({
+const player1 = new Fighter({
     // initial position of player1
     position: {
     x: 0,
@@ -82,7 +33,7 @@ const player1 = new Sprite({
 })
 
 
-const player2 = new Sprite({
+const player2 = new Fighter({
     // initial position of player2
     position: {
     x: canvas.width - 50,
@@ -122,57 +73,15 @@ const keys = {
     }
 }
 
-function rectangularCollision({
-    rectangle1,
-    rectangle2
-}) {
-    return (
-        rectangle1.attackBox.position.x + rectangle1.attackBox.width >=rectangle2.position.x
-        &&
-        rectangle1.attackBox.position.x <= rectangle2.position.x + rectangle2.width
-        &&
-        rectangle1.attackBox.position.y +rectangle2.attackBox.height >=rectangle2.position.y
-        &&
-        rectangle1.attackBox.position.y <= rectangle2.position.y + rectangle2.height
-        )
-}
-function determineWinner(player1Health, player2Health, timerId) {
-    clearTimeout(timerId)
-    document.querySelector('#DisplayResult').style.display = 'flex'
-    if (player1Health === player2Health) {
-            document.querySelector('#DisplayResult').innerHTML = 'Tie'   
-        }
-            
-        if (player1Health > player2Health) {
-            document.querySelector('#DisplayResult').innerHTML = 'Player 1 Wins'   
-        }
-        if (player1Health < player2Health) {
-            document.querySelector('#DisplayResult').innerHTML = 'Player 2 Wins'    
-        }
-}
-let timer = 60
-let timerId
-function decreaseTimer() {
-    
-    if (timer > 0) {
-       timerId = setTimeout(decreaseTimer,1000)
-        timer--
-        document.querySelector('#timer').innerHTML = timer
-    }
-    if(timer === 0) {
-        
-        determineWinner(player1.health, player2.health, timerId)
-        
-    }
-    
-}
+
 
 decreaseTimer()
 
 function animate() {
     window.requestAnimationFrame(animate)
     cContext.fillStyle = 'black'
-    cContext.fillRect(0,0,canvas.width,canvas.height)
+    cContext.fillRect(0, 0, canvas.width, canvas.height)
+    background.update()
     player1.update('red')
     player2.update('blue')
 
