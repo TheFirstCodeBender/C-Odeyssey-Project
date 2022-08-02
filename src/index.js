@@ -6,7 +6,7 @@ canvas.height = 576;
 
 cContext.fillRect(0, 0, canvas.width, canvas.height);
 
-const gravity = 0.7
+const gravity = 0.1
 
 const background = new Sprite({
     position: {
@@ -38,6 +38,39 @@ const player1 = new Fighter({
     offset: {
         x: 0,
         y: 0
+    },
+    imageSrc: '../assets/Characters/Ryouta/Idle.png',
+    scale: 2.5,
+    framesMax: 8,
+    offset: {
+        x:215,
+        y:157
+    },
+    sprites: {
+        idle: {
+            imageSrc: '../assets/Characters/Ryouta/Idle.png',
+            framesMax: 8,
+        },
+        run: {
+            imageSrc: '../assets/Characters/Ryouta/Run.png',
+            framesMax: 8,
+        },
+        jump: {
+            imageSrc: '../assets/Characters/Ryouta/Jump.png',
+            framesMax: 2,
+        },
+        fall: {
+            imageSrc: '../assets/Characters/Ryouta/Fall.png',
+            framesMax: 2,
+        },
+        attack1: {
+            imageSrc: '../assets/Characters/Ryouta/Attack1.png',
+            framesMax: 6,
+        },
+        attack2: {
+            imageSrc: '../assets/Characters/Ryouta/Attack2.png',
+            framesMax: 2,
+        },
     }
 })
 
@@ -56,8 +89,10 @@ const player2 = new Fighter({
     offset: {
         x: -50,
         y: 0
-    }
-
+    },
+    imageSrc: '../assets/Characters/kenji/Idle.png',
+    scale: 1,
+    framesMax: 4
 })
 
 
@@ -100,10 +135,27 @@ function animate() {
     player2.velocity.x = 0
 
     //Player 1 Movement
+
+    // running
     if (keys.a.pressed && player1.lastKey === 'a' ) {
         player1.velocity.x = -5;
+        player1.switchSprite('run')
     } else if (keys.d.pressed && player1.lastKey === 'd') {
         player1.velocity.x = 5;
+        player1.switchSprite('run')
+    
+    }
+    
+    // idle
+    else { 
+        player1.switchSprite('idle')
+    }
+
+    //jumping
+    if (player1.velocity.y < 0) {
+        player1.switchSprite('jump')
+    } else if (player1.velocity.y > 0 ){
+        player1.switchSprite('fall')
     }
 
     //Player 2 Movement
@@ -158,7 +210,7 @@ window.addEventListener('keydown', (event) => {
         break
 
         case 'w':
-        player1.velocity.y = -20
+        player1.velocity.y = -7
         break
         
         case ' ':
@@ -177,7 +229,7 @@ window.addEventListener('keydown', (event) => {
         break
 
         case 'ArrowUp':
-        player2.velocity.y = -20
+        player2.velocity.y = -6
         break
         
         case 'ArrowDown':

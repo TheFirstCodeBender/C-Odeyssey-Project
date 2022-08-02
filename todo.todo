@@ -10,11 +10,11 @@ Basic Fighting Game Mechanics:
 Sprites and Animation:
  ✔ Background Sprites @done(22-07-16 20:06)
  ✔ Shop Sprite With Animation @done(22-07-16 21:10)
- ☐ Player 1 Sprite
-  ☐ Idle
-  ☐ Run
-  ☐ Jump
-  ☐ Attack
+ ✔ Player 1 Sprite @done(22-08-01 19:27)
+  ✔ Idle @done(22-08-01 17:47)
+  ✔ Run @done(22-08-01 19:17)
+  ✔ Jump @done(22-08-01 19:17)
+  ✔ Attack @done(22-08-01 19:27)
  ☐ Player 2 Sprite
   ☐ Idle
   ☐ Run
