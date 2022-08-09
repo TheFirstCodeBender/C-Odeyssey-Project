@@ -13,14 +13,14 @@ const background = new Sprite({
         x: 0,
         y: 0
     },
-    imageSrc: '../assets/Stages/Hidden-Forest/background.png'
+    imageSrc: './assets/Stages/Hidden-Forest/background.png'
 })
 const shop = new Sprite({
     position: {
         x: 625,
         y: 128
     },
-    imageSrc: '../assets/Stages/Hidden-Forest/shop.png',
+    imageSrc: './assets/Stages/Hidden-Forest/shop.png',
     scale: 2.75,
     framesMax: 6
 })
@@ -39,7 +39,7 @@ const player1 = new Fighter({
         x: 0,
         y: 0
     },
-    imageSrc: '../assets/Characters/Ryouta/Idle.png',
+    imageSrc: './assets/Characters/Ryouta/Idle.png',
     scale: 2.5,
     framesMax: 8,
     offset: {
@@ -48,27 +48,27 @@ const player1 = new Fighter({
     },
     sprites: {
         idle: {
-            imageSrc: '../assets/Characters/Ryouta/Idle.png',
+            imageSrc: './assets/Characters/Ryouta/Idle.png',
             framesMax: 8,
         },
         run: {
-            imageSrc: '../assets/Characters/Ryouta/Run.png',
+            imageSrc: './assets/Characters/Ryouta/Run.png',
             framesMax: 8,
         },
         jump: {
-            imageSrc: '../assets/Characters/Ryouta/Jump.png',
+            imageSrc: './assets/Characters/Ryouta/Jump.png',
             framesMax: 2,
         },
         fall: {
-            imageSrc: '../assets/Characters/Ryouta/Fall.png',
+            imageSrc: './assets/Characters/Ryouta/Fall.png',
             framesMax: 2,
         },
         attack1: {
-            imageSrc: '../assets/Characters/Ryouta/Attack1.png',
+            imageSrc: './assets/Characters/Ryouta/Attack1.png',
             framesMax: 6,
         },
         attack2: {
-            imageSrc: '../assets/Characters/Ryouta/Attack2.png',
+            imageSrc: './assets/Characters/Ryouta/Attack2.png',
             framesMax: 2,
         },
     }
@@ -90,7 +90,7 @@ const player2 = new Fighter({
         x: -50,
         y: 0
     },
-    imageSrc: '../assets/Characters/kenji/Idle.png',
+    imageSrc: './assets/Characters/kenji/Idle.png',
     scale: 2.5,
     framesMax: 4,
     offset: {
@@ -99,27 +99,27 @@ const player2 = new Fighter({
     },
     sprites: {
         idle: {
-            imageSrc: '../assets/Characters/kenji/Idle.png',
+            imageSrc: './assets/Characters/kenji/Idle.png',
             framesMax: 4,
         },
         run: {
-            imageSrc: '../assets/Characters/kenji/Run.png',
+            imageSrc: './assets/Characters/kenji/Run.png',
             framesMax: 8,
         },
         jump: {
-            imageSrc: '../assets/Characters/kenji/Jump.png',
+            imageSrc: './assets/Characters/kenji/Jump.png',
             framesMax: 2,
         },
         fall: {
-            imageSrc: '../assets/Characters/kenji/Fall.png',
+            imageSrc: './assets/Characters/kenji/Fall.png',
             framesMax: 2,
         },
         attack1: {
-            imageSrc: '../assets/Characters/kenji/Attack1.png',
+            imageSrc: './assets/Characters/kenji/Attack1.png',
             framesMax: 4,
         },
         attack2: {
-            imageSrc: '../assets/Characters/kenji/Attack2.png',
+            imageSrc: './assets/Characters/kenji/Attack2.png',
             framesMax: 2,
         },
     }
