@@ -71,7 +71,7 @@ const player1 = new Fighter({
         },
         attack2: {
             imageSrc: './assets/Characters/Ryouta/Attack2.png',
-            framesMax: 2,
+            framesMax: 6,
         },
         takeHit: {
         imageSrc: './assets/Characters/Ryouta/Take Hit - white silhouette.png',
@@ -138,7 +138,7 @@ const player2 = new Fighter({
         },
         attack2: {
             imageSrc: './assets/Characters/kenji/Attack2.png',
-            framesMax: 2,
+            framesMax: 4,
         },
         takeHit: {
         imageSrc: './assets/Characters/kenji/Take hit.png',
@@ -315,7 +315,14 @@ window.addEventListener('keydown', (event) => {
                 break
         
             case ' ':
-                player1.attack()
+                if (player1.lastKey === 'attack') {
+                    player1.attack('attack2')
+                    player1.lastKey = undefined
+                } else {
+                player1.attack('attack1')
+                player1.lastKey = 'attack'
+                }
+                
                 break
         }
     }
@@ -338,7 +345,13 @@ window.addEventListener('keydown', (event) => {
         break
         
         case 'ArrowDown':
-        player2.attack()
+            if (player2.lastKey === 'attack') {
+                player2.attack('attack2')
+                player2.lastKey = undefined
+            } else {
+                player2.attack('attack1')
+                player2.lastKey = 'attack'
+                }
         break
     }
     
