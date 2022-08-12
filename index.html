@@ -1,13 +1,15 @@
 <head>
 <link rel="stylesheet" href="index.css">
 <link rel="icon" type="image/png" href="./assets/Logo Images/favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <div id = 'StageContainer'>
         <div id="StatusBar">
+
             <!-- Player Health -->
-            <div class="HealthBarContainer">
+            <div class="HealthBarContainer" id="p1">
                 <div id='Player1Health'></div>
                 <div class="PlayerHealthBar"></div>
             </div>
@@ -18,7 +20,7 @@
             </div>
 
             <!-- Enemy Health -->
-            <div class="HealthBarContainer">
+            <div class="HealthBarContainer" id="p2">
                 <div id="Player2Health"></div>
                 <div class="PlayerHealthBar"></div>
             </div>
@@ -28,7 +30,9 @@
         <div id="DisplayResult">Tie</div>
         <canvas>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <script src="js/utils.js"></script>
     <script src="js/classes.js"></script>
 <script src="index.js"></script>
+
 </body>

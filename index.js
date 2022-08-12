@@ -1,3 +1,5 @@
+
+
 const canvas = document.querySelector('canvas');
 const cContext = canvas.getContext('2d');
 
@@ -71,7 +73,24 @@ const player1 = new Fighter({
             imageSrc: './assets/Characters/Ryouta/Attack2.png',
             framesMax: 2,
         },
-    }
+        takeHit: {
+        imageSrc: './assets/Characters/Ryouta/Take Hit - white silhouette.png',
+        framesMax: 4
+        },
+        death: {
+        imageSrc: './assets/Characters/Ryouta/Death.png',
+        framesMax: 6
+        }
+    },
+    attackBox: {
+        offset: {
+            x: 25,
+            y: 0
+        },
+        width: 200,
+        height: 100
+    },
+    
 })
 
 
@@ -85,14 +104,13 @@ const player2 = new Fighter({
         x: 0,
         y: 0,
     },
-    color: 'blue',
     offset: {
         x: -50,
         y: 0
     },
-    imageSrc: './assets/Characters/kenji/Idle.png',
+    // imageSrc: './assets/Characters/kenji/Idle.png',
     scale: 2.5,
-    framesMax: 4,
+    // framesMax: 4,
     offset: {
         x:215,
         y:170
@@ -122,7 +140,23 @@ const player2 = new Fighter({
             imageSrc: './assets/Characters/kenji/Attack2.png',
             framesMax: 2,
         },
-    }
+        takeHit: {
+        imageSrc: './assets/Characters/kenji/Take hit.png',
+        framesMax: 3
+        },
+        death: {
+        imageSrc: './assets/Characters/kenji/Death.png',
+        framesMax: 7
+        }
+    },
+    attackBox: {
+            offset: {
+                x: -150,
+                y: 0
+            },
+            width: 150,
+            height: 150
+        }
 })
 
 
@@ -157,8 +191,10 @@ function animate() {
     cContext.fillRect(0, 0, canvas.width, canvas.height)
     background.update()
     shop.update()
-    player1.update('red')
-    player2.update('blue')
+    cContext.fillStyle = 'rgba(255,255,255,0.15)'
+    cContext.fillRect(0, 0, canvas.width, canvas.height)
+    player1.update()
+    player2.update()
 
     // default velocity if nothing is pressed
     player1.velocity.x = 0
@@ -204,32 +240,53 @@ function animate() {
     //jumping
     if (player2.velocity.y < 0) {
         player2.switchSprite('jump')
-    } else if (player1.velocity.y > 0 ){
+    } else if (player2.velocity.y > 0 ){
         player2.switchSprite('fall')
     }
 
-    // detect for collision
+    // detect for collision & player2 gets hit
     if (
         rectangularCollision({
             rectangle1: player1,
             rectangle2: player2
-    }) && player1.isAttacking
+        }) &&
+        player1.isAttacking &&
+        player1.framesCurrent === 4
     ) {
+        player2.takeHit()
         player1.isAttacking = false
-        player2.health -= 10
-        document.querySelector('#Player2Health').style.width = player2.health + '%'
+        
+        // document.querySelector('#Player2Health').style.width = player2.health + '%'
+        gsap.to('#Player2Health', {
+            width: player2.health + '%'
+        }
+        )
     }
+
+    // if player1 misses
+    if (player1.isAttacking && player1.framesCurrent === 4) {
+        player1.isAttacking = false
+    }
+
     if (
         rectangularCollision({
             rectangle1: player2,
             rectangle2: player1
-    }) && player2.isAttacking
+    }) && player2.isAttacking && player2.framesCurrent === 2
     ) {
+        player1.takeHit()
         player2.isAttacking = false
-        player1.health -= 10
-        document.querySelector('#Player1Health').style.width = player1.health + '%'
+        // document.querySelector('#Player1Health').style.width = player1.health + '%'
+        gsap.to('#Player1Health', {
+            width: player1.health + '%'
+        }
+        )
     }
 
+    //if player2 misses
+    if (player2.isAttacking && player2.framesCurrent === 2) {
+        player2.isAttacking = false
+    }
     // end game based on health
     if (player1.health === 0 || player2.health === 0) {
         determineWinner(player1.health,player2.health, timerId)
@@ -239,26 +296,31 @@ function animate() {
 animate()
 
 window.addEventListener('keydown', (event) => {
-    switch (event.key) {
+    if (!player1.dead) {
+        switch (event.key) {
 
-        //Player 1 keys
-        case 'd':
-        keys.d.pressed = true
-        player1.lastKey = 'd'
-        break
+            //Player 1 keys
+            case 'd':
+                keys.d.pressed = true
+                player1.lastKey = 'd'
+                break
 
-        case 'a':
-        keys.a.pressed = true
-        player1.lastKey = 'a'
-        break
+            case 'a':
+                keys.a.pressed = true
+                player1.lastKey = 'a'
+                break
 
-        case 'w':
-        player1.velocity.y = -7
-        break
+            case 'w':
+                player1.velocity.y = -7
+                break
         
-        case ' ':
-        player1.attack()
-        break
+            case ' ':
+                player1.attack()
+                break
+        }
+    }
+    if (!player2.dead) {
+        switch (event.key) {
         
         //Player 2 keys
         case 'ArrowRight':
@@ -279,7 +341,10 @@ window.addEventListener('keydown', (event) => {
         player2.attack()
         break
     }
+    
+    }
 })
+
 window.addEventListener('keyup', (event) => {
     switch (event.key) {
         //Player 1 keys
