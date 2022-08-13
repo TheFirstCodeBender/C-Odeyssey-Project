@@ -19,10 +19,11 @@ const shop = new Sprite({
     framesMax: 6
 })
 
-const player1 = Hyperion
-
-
 const player2 = Kenji
+const player1 = Merlin
+
+
+
 
 
 const keys = {
@@ -184,13 +185,7 @@ window.addEventListener('keydown', (event) => {
                 break
         
             case ' ':
-                if (player1.lastKey === 'attack1') {
-                    player1.attack('attack2')
-                    player1.lastKey = undefined
-                } else {
-                player1.attack('attack1')
-                player1.lastKey = 'attack1'
-                }
+                player1.lastKey = determineAttack(player1,player1.lastKey)
                 
                 break
         }
@@ -214,13 +209,7 @@ window.addEventListener('keydown', (event) => {
         break
         
         case 'ArrowDown':
-            if (player2.lastKey === 'attack') {
-                player2.attack('attack2')
-                player2.lastKey = undefined
-            } else {
-                player2.attack('attack1')
-                player2.lastKey = 'attack'
-                }
+        player2.lastKey = determineAttack(player2,player2.lastKey)
         break
     }
     

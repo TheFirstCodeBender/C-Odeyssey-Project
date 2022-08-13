@@ -18,6 +18,20 @@ function rectangularCollision({
         rectangle1.attackBox.position.y <= rectangle2.position.y + rectangle2.height
         )
 }
+function flipHorizontally(img, x, y) {
+		// move to x + img's width
+		c.translate(this.position.x + this.width, y);
+
+		// scaleX by -1; this "trick" flips horizontally
+		cContext.scale(this.reverse, 1);
+
+		// draw the img
+		// no need for x,y since we've already translated
+		this.draw()
+
+		// always clean up -- reset transformations to default
+		cContext.setTransform(1, 0, 0, 1, 0, 0);
+	} 
 
 
 function determineWinner(player1Health, player2Health, timerId) {
@@ -53,4 +67,23 @@ function decreaseTimer() {
         
         determineWinner(player1.health, player2.health, timerId)   
     }
+}
+
+function determineAttack(player, lastkey) {
+    if (lastkey === 'attack1') {
+         player.attack('attack2')
+        if (player.sprites.attack3) {
+            lastkey = 'attack2'
+        } else {
+            lastkey = undefined
+        }
+    } else if (lastkey === 'attack2') {
+        player.attack('attack3')
+        lastkey = undefined
+    }
+    else {
+        player.attack('attack1')
+        lastkey = 'attack1'
+    }
+    return lastkey
 }

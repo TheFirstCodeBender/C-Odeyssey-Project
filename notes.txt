@@ -1,0 +1,41 @@
+Your animation data (like framesMax, and filepath, and cropping information or other relevant info) is usually pulled out into a seperate json file, then loaded in for your engine to consume, but what you're doing is obviously fine.
+
+One thing that was irking me a bit was switchSprite @2:47:00.  rather than making a giant switch which has to be maintained for every new sprite addition you add, this could mostly all be handled in an object literal lookup with a single string argument sent to this function under certain gamestate scenarios.
+
+Example:
+
+switchSprite(arg){
+   this.image = this.sprites[arg].image
+   this.framesMax = this.sprites[arg].framesMax
+   this.framesCurrent = 0
+}
+
+Doing it this way will work regardless of any new additions of sprites you add to this class and massively reduce the amount of repeated code in there.
+
+Sean Caylor
+Sean Caylor
+3 months ago
+Amazing tutorial, thank you so much! 
+I've been tinkering with the code a bit, added a turnery to the jump keys to prevent double jumping and such, but I'd really be interested in mirroring the sprites when they cross each other on the y axis... I'm thinking of adding a mirrored property and having the draw be a turnery that simply flips the sprite when I want to flip it, but step one is I need to figure out how to do the flipping. Any hints?
+2
+Johann Aveline
+Johann Aveline
+2 months ago (edited)
+I did the same thing to prevent multiple jumping and wanted to reverse sprites when they cross. But before this, in my case, my enemy was in the wrong direction. I did the trick using (c.scale(-1, 1)) before drawing my ennemy.
+Johann Aveline
+Johann Aveline
+2 months ago
+flipHorizontally(img, x, y) {
+		// move to x + img's width
+		//  c.translate(this.position.x + this.width, y);
+
+		// scaleX by -1; this "trick" flips horizontally
+		c.scale(this.reverse, 1);
+
+		// draw the img
+		// no need for x,y since we've already translated
+		this.draw()
+
+		// always clean up -- reset transformations to default
+		c.setTransform(1, 0, 0, 1, 0, 0);
+	} 

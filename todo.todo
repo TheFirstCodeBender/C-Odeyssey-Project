@@ -30,11 +30,11 @@ Multiple Characters:
 ☐ Drakkar Nox
 ☐ Yizla Vex
 ☐ Jade
+☐ Arthur
 ☐ William Marshal
 ☐ Lance
 ☐ King Henry
 ☐ King Mula
-☐ Arthur
 ☐ Merlin
 ☐ Takeshi
 ☐ Robin Hood
@@ -44,9 +44,12 @@ Multiple Characters:
 ☐ Olaf, The Unbearable
 
 MISC Functionality :
+   ✔ Add Multi Hit Functionality @started(22-08-12 07:37) @done(22-08-12 08:37) @lasted(1h33s)
    ✔ Add Music @started(22-08-12 20:16) @done(22-08-12 21:17) @lasted(1h1m2s)
    ☐ Add Player Stats @started(22-08-12 21:17)
-
+   ☐ Flipping Sprites Along the Y-Axis @started(22-08-13 07:26)
+   ☐ Multi Hit Scaling Damage 
+   ☐ Wall Detection
 Future Todo:
  ☐ Game Menu
  ☐ Character Select

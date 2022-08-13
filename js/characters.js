@@ -164,7 +164,7 @@ Hyperion = new Fighter({
         Defense:3,
         Speed:1
     },
-    imageSrc: './assets/Characters/kenji/Idle.png',
+    imageSrc: './assets/Characters/Hyperion/Idle.png',
     scale: 3,
     framesMax: 4,
     offset: {
@@ -218,3 +218,132 @@ Hyperion = new Fighter({
             height: 200
         }
 })
+
+Merlin = new Fighter({
+    position: {
+    x: 50,
+    y:0
+    },
+    velocity: {
+        x: 0,
+        y: 0,
+    },
+    stats: {
+        Offense:1.5,
+        Defense:3,
+        Speed:1
+    },
+    imageSrc: './assets/Characters/Merlin/Idle.png',
+    scale: 1.60,
+    framesMax: 6,
+    offset: {
+        x:215,
+        y:76
+    },
+    sprites: {
+        idle: {
+            imageSrc: './assets/Characters/Merlin/Idle.png',
+            framesMax: 6,
+        },
+        run: {
+            imageSrc: './assets/Characters/Merlin/Run.png',
+            framesMax: 8,
+        },
+        jump: {
+            imageSrc: './assets/Characters/Merlin/Jump.png',
+            framesMax: 2,
+        },
+        fall: {
+            imageSrc: './assets/Characters/Merlin/Fall.png',
+            framesMax: 2,
+        },
+        attack1: {
+            imageSrc: './assets/Characters/Merlin/Attack1.png',
+            framesMax: 8,
+        },
+        attack2: {
+            imageSrc: './assets/Characters/Merlin/Attack2.png',
+            framesMax: 8,
+        },
+        takeHit: {
+        imageSrc: './assets/Characters/Merlin/Takehit.png',
+        framesMax: 4
+        },
+        death: {
+        imageSrc: './assets/Characters/Merlin/Death.png',
+        framesMax: 7
+        }
+    },
+    attackBox: {
+            offset: {
+                x: -50,
+                y: 0
+            },
+            width: 300,
+            height: 200
+        }
+})
+// Merlin = new Fighter({
+//     position: {
+//     x: 50,
+//     y:0
+//     },
+//     velocity: {
+//         x: 0,
+//         y: 0,
+//     },
+//     stats: {
+//         Offense:1.5,
+//         Defense:3,
+//         Speed:1
+//     },
+//     imageSrc: './assets/Characters/Merlin/Idle.png',
+//     scale: 1.65,
+//     framesMax: 6,
+//     offset: {
+//         x:215,
+//         y:78
+//     },
+//     sprites: {
+//         idle: {
+//             imageSrc: './assets/Characters/Merlin/Idle.png',
+//             framesMax: 6,
+//         },
+//         run: {
+//             imageSrc: './assets/Characters/Merlin/Run.png',
+//             framesMax: 8,
+//         },
+//         jump: {
+//             imageSrc: './assets/Characters/Merlin/Jump.png',
+//             framesMax: 2,
+//         },
+//         fall: {
+//             imageSrc: './assets/Characters/Merlin/Fall.png',
+//             framesMax: 2,
+//         },
+//         attack1: {
+//             imageSrc: './assets/Characters/Merlin/Attack1.png',
+//             framesMax: 8,
+//         },
+//         attack2: {
+//             imageSrc: './assets/Characters/Merlin/Attack2.png',
+//             framesMax: 8,
+//         },
+//         takeHit: {
+//         imageSrc: './assets/Characters/Merlin/Take hit.png',
+//         framesMax: 4
+//         },
+//         death: {
+//         imageSrc: './assets/Characters/Merlin/Death.png',
+//         framesMax: 7
+//         }
+//     },
+//     attackBox: {
+//             offset: {
+//                 x: -50,
+//                 y: 0
+//             },
+//             width: 300,
+//             height: 200
+//         }
+// })
