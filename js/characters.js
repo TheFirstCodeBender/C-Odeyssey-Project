@@ -197,15 +197,15 @@ Hyperion = new Fighter({
             framesMax: 7,
         },
         attack3: {
-            imageSrc: '../assets/Characters/Hyperion/Attack3.png',
+            imageSrc: './assets/Characters/Hyperion/Attack3.png',
             framesMax: 8,
         },
         takeHit: {
-        imageSrc: '../assets/Characters/Hyperion/Take hit.png',
+        imageSrc: './assets/Characters/Hyperion/Take hit.png',
         framesMax: 3
         },
         death: {
-        imageSrc: '../assets/Characters/Hyperion/Death.png',
+        imageSrc: './assets/Characters/Hyperion/Death.png',
         framesMax: 7
         }
     },
