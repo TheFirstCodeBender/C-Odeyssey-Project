@@ -221,7 +221,7 @@ Hyperion = new Fighter({
 
 Merlin = new Fighter({
     position: {
-    x: 50,
+    x: 100,
     y:0
     },
     velocity: {
