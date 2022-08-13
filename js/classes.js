@@ -1,3 +1,4 @@
+
 class Sprite {
     constructor({position, imageSrc, scale = 1, framesMax = 1, offset = {x: 0, y: 0}}) {
         this.position = position
@@ -55,7 +56,7 @@ class Fighter extends Sprite{
     constructor({
         position,
         velocity,
-
+        stats = { Offense: 10 , Defense: 10, Speed: 10},
         imageSrc,
         scale = 1,
         framesMax = 1,
@@ -88,7 +89,7 @@ class Fighter extends Sprite{
             width: attackBox.width,
             height: attackBox.height 
         }
-        
+        this.stats = stats
         this.isAttacking = false
         this.health = 100
         this.framesCurrent = 0
@@ -138,9 +139,9 @@ class Fighter extends Sprite{
         this.isAttacking = true
         
     }
-    takeHit() {
+    takeHit(Offense, Defense) {
         // this.switchSprite('takeHit')
-        this.health -= 20
+        this.health -= (5 * Offense) - Defense
         if (this.health < 0) {
             this.switchSprite('death')
         } else {
@@ -163,7 +164,9 @@ class Fighter extends Sprite{
             return
         if (this.image === this.sprites.attack2.image &&
             this.framesCurrent < this.sprites.attack2.framesMax - 1)
-            
+            return
+        if (this.image === this.sprites.attack3.image &&
+            this.framesCurrent < this.sprites.attack3.framesMax - 1)
             return
         //override all other animations with take hit animation
         if (this.image === this.sprites.takeHit.image &&
@@ -210,6 +213,13 @@ class Fighter extends Sprite{
                 if (this.image !== this.sprites.attack2.image) {
                     this.image = this.sprites.attack2.image
                     this.framesMax = this.sprites.attack2.framesMax
+                    this.framesCurrent = 0
+                } 
+                break
+            case 'attack3':
+                if (this.image !== this.sprites.attack3.image) {
+                    this.image = this.sprites.attack3.image
+                    this.framesMax = this.sprites.attack3.framesMax
                     this.framesCurrent = 0
                 } 
                 break

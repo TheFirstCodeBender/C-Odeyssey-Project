@@ -7,6 +7,21 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url(./);
+background-repeat:no-repeat;
+background-position: center center;
+}
+html,body {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    background: black url(./assets/LogoImages/Retro.jpg) center center no-repeat;
+    ;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 #StageContainer {
     position: relative;
@@ -29,7 +44,8 @@ body {
     left: 0;
     top: 0;
     margin-left: auto;
-    
+    box-shadow: -2px 0 0 0px #818CF8;
+    border-radius: 5px;
 }
 
 #Player2Health {
@@ -39,7 +55,8 @@ body {
     right: 0;
     left: 0;
     top: 0;
-
+    box-shadow: 2px 0 0 0px #818CF8;
+    border-radius: 5px;
 }
 
 #Timer {
@@ -51,13 +68,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 4px whitesmoke solid;
+    border: 5px whitesmoke solid;
+    border-radius: 10px;
 }
 
 .PlayerHealthBar {
     background-color: red;
     height: 30px;
-    
+    box-shadow: 0 0 0 5px white;
+    border-radius: 5px;
 }
 
 .HealthBarContainer {
@@ -81,10 +100,22 @@ body {
     border-top: 4px whitesmoke solid;
     border-left: 4px whitesmoke solid;
     border-bottom: 4px whitesmoke solid;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
 #p2 {
     border-top: 4px whitesmoke solid;
     border-right: 4px whitesmoke solid;
     border-bottom: 4px whitesmoke solid;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+#PlayBtn {
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

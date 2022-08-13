@@ -23,7 +23,31 @@ Sprites and Animation:
  ✔ Interface Design and Animation @done(22-08-11 22:14)
  ✔ Push Live @done(22-08-11 22:14)
 
-UI & UX:
+Multiple Characters:
+✔ Ryouta @started(22-08-12 17:26) @done(22-08-12 19:22) @lasted(1h56m19s)
+✔ Kenji @started(22-08-12 17:26) @done(22-08-12 19:22) @lasted(1h56m43s)
+✔ Hyperion @started(22-08-12 19:22) @done(22-08-12 19:54) @lasted(32m38s)
+☐ Drakkar Nox
+☐ Yizla Vex
+☐ Jade
+☐ William Marshal
+☐ Lance
+☐ King Henry
+☐ King Mula
+☐ Arthur
+☐ Merlin
+☐ Takeshi
+☐ Robin Hood
+☐ Atlas
+☐ Inazuma
+☐ Ash
+☐ Olaf, The Unbearable
+
+MISC Functionality :
+   ✔ Add Music @started(22-08-12 20:16) @done(22-08-12 21:17) @lasted(1h1m2s)
+   ☐ Add Player Stats @started(22-08-12 21:17)
+
+Future Todo:
  ☐ Game Menu
  ☐ Character Select
  ☐ Computer AI

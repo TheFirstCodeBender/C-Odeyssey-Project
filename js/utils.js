@@ -1,3 +1,9 @@
+
+let canvas = document.querySelector('canvas');
+let cContext = canvas.getContext('2d');
+
+canvas.width = 1024;
+canvas.height = 576;
 function rectangularCollision({
     rectangle1,
     rectangle2
@@ -18,20 +24,26 @@ function determineWinner(player1Health, player2Health, timerId) {
     clearTimeout(timerId)
     document.querySelector('#DisplayResult').style.display = 'flex'
     if (player1Health === player2Health) {
-            document.querySelector('#DisplayResult').innerHTML = 'Tie'   
+        document.querySelector('#DisplayResult').innerHTML = 'Tie'
+        player2.switchSprite('death')
+        player1.switchSprite('death')
         }
             
         if (player1Health > player2Health) {
             document.querySelector('#DisplayResult').innerHTML = 'Player 1 Wins'   
+            player2.switchSprite('death')
         }
         if (player1Health < player2Health) {
-            document.querySelector('#DisplayResult').innerHTML = 'Player 2 Wins'    
+            document.querySelector('#DisplayResult').innerHTML = 'Player 2 Wins'
+            player1.switchSprite('death')
         }
 }
-let timer = 60
+let timer = 120
 let timerId
 function decreaseTimer() {
-    
+    if (timer === 11) {
+        document.querySelector('#timer').style.color = 'red'
+    }
     if (timer > 0) {
        timerId = setTimeout(decreaseTimer,1000)
         timer--
@@ -39,8 +51,6 @@ function decreaseTimer() {
     }
     if(timer === 0) {
         
-        determineWinner(player1.health, player2.health, timerId)
-        
+        determineWinner(player1.health, player2.health, timerId)   
     }
-    
 }
